@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*- 
-from database import db_session, Demount, Floor, Wall
+from database import db_session, Wall
 
 def check_db():
     check = db_session.query(Wall.id).distinct().all()

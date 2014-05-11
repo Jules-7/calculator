@@ -2,16 +2,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, ForeignKey, VARCHAR
-from sqlalchemy import Boolean, Unicode
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Boolean
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash
 from sqlalchemy import exc
 
 
-engine = create_engine('sqlite:///works.db',
-                       echo=True)
-conn = engine.connect()
+engine = create_engine('sqlite:///works.db', echo=True)
 
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
@@ -82,9 +80,7 @@ class Other(Base):
     price = Column(Integer)
     dimension = Column(String)
 
-
 try:
     Base.metadata.create_all(engine)
-    print('connected')
 except exc.OperationalError as e:
     print('e')

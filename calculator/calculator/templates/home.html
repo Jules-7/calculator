@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
+	</script>
+	<script> 
+	$(document).ready(function(){
+  		$("#demount").click(function(){
+    		$("#demount_panel").slideToggle("slow");
+  		});
+	});
+	$(document).ready(function(){
+  		$("#floor").click(function(){
+    		$("#floor_panel").slideToggle("slow");
+  		});
+	});
+	$(document).ready(function(){
+  		$("#wall").click(function(){
+    		$("#wall_panel").slideToggle("slow");
+  		});
+	});
+	$(document).ready(function(){
+  		$("#doorway").click(function(){
+    		$("#doorway_panel").slideToggle("slow");
+  		});
+	});
+	$(document).ready(function(){
+  		$("#ceiling").click(function(){
+    		$("#ceiling_panel").slideToggle("slow");
+  		});
+	});
+	$(document).ready(function(){
+  		$("#tile").click(function(){
+    		$("#tile_panel").slideToggle("slow");
+  		});
+	});
+	$(document).ready(function(){
+  		$("#electric").click(function(){
+    		$("#electric_panel").slideToggle("slow");
+  		});
+	});
+	$(document).ready(function(){
+  		$("#sanitary").click(function(){
+    		$("#sanitary_panel").slideToggle("slow");
+  		});
+	});
+	$(document).ready(function(){
+  		$("#other").click(function(){
+    		$("#other_panel").slideToggle("slow");
+  		});
+	});
+	</script>
+	<style> 
+	#demount_panel,#demount,#floor_panel,#floor,#wall_panel,#wall,#doorway_panel,#doorway,#ceiling_panel,#ceiling,
+	#tile_panel,#tile,#electric_panel,#electric,#sanitary_panel,#sanitary,#other_panel,#other
+	{
+	padding:5px;
+	text-align:center;
+	width:400px;
+	background-color:#e5eecc;
+	border:solid 1px #c3c3c3;
+	}
+	#demount_panel,#floor_panel,#wall_panel,#doorway_panel,#ceiling_panel,#tile_panel,#electric_panel,#sanitary_panel,#other_panel
+	{
+	display:none;
+	}
+	</style>
+	</head>
+	<body>
+	<div id="demount">Демонтаж</div>
+	<div id="demount_panel">
+		<form name="demount" action="{{ url_for('select_work', url='Demount') }}" method="post">
+			<p>{{ demount.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	<div id="floor">Пол</div>
+	<div id="floor_panel">
+		<form name="floor" action="{{ url_for('select_work', url='Floor') }}" method="post">
+			<p>{{ floor.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	<div id="wall">Стены</div>
+	<div id="wall_panel">
+		<form name="wall" action="{{ url_for('select_work', url='Wall') }}" method="post">
+			<p>{{ wall.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	<div id="doorway">Проем</div>
+	<div id="doorway_panel">
+		<form name="doorway" action="{{ url_for('select_work', url='Doorway') }}" method="post">
+			<p>{{ doorway.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	<div id="ceiling">Потолок</div>
+	<div id="ceiling_panel">
+		<form name="ceiling" action="{{ url_for('select_work', url='Ceiling') }}" method="post">
+			<p>{{ ceiling.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	<div id="tile">Плитка</div>
+	<div id="tile_panel">
+		<form name="tile" action="{{ url_for('select_work', url='Tile') }}" method="post">
+			<p>{{ tile.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	<div id="electric">Электрика</div>
+	<div id="electric_panel">
+		<form name="electric" action="{{ url_for('select_work', url='Electric') }}" method="post">
+			<p>{{ electric.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	<div id="sanitary">Сантехника</div>
+	<div id="sanitary_panel">
+		<form name="sanitary" action="{{ url_for('select_work', url='Sanitary') }}" method="post">
+			<p>{{ sanitary.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	<div id="other">Разное</div>
+		<div id="other_panel">
+		<form name="other" action="{{ url_for('select_work', url='Other') }}" method="post">
+			<p>{{ other.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	
+	{% if selected_data %}
+		{{selected_data}}
+	{% endif %}
+	
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="flash">
+				{% for message in messages %}
+					<p class="flashmessage">{{ message }}</p>
+				{% endfor %}
+			</div>
+		{% endif %}
+	{% endwith %}
+	</body>
+</html>
