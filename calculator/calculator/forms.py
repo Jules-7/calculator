@@ -1,22 +1,21 @@
 from wtforms import Form, BooleanField, TextField, validators
-from wtforms import SelectMultipleField, widgets
+from wtforms import SelectMultipleField, widgets, PasswordField
 import methods
 
 class MultiCheckboxField(SelectMultipleField):
-    """
-    A multiple-select, except displays a list of checkboxes.
-
-    Iterating the field will produce subfields, allowing custom rendering of
-    the enclosed checkbox fields.
-    """
     widget = widgets.TableWidget()
     option_widget = widgets.CheckboxInput()
+
+class MultiTextField(SelectMultipleField):
+    widget = widgets.TableWidget()
+    option_widget = widgets.TextInput()
 
 class DemountForm(Form):
     choices = methods.demount_works()
     name = MultiCheckboxField("Select", choices = choices, coerce=int)
 
-class FloortForm(Form):
+
+class FloorForm(Form):
     choices = methods.floor_works()
     name = MultiCheckboxField("Select", choices = choices, coerce=int)
 
@@ -47,3 +46,28 @@ class SanitaryForm(Form):
 class OtherForm(Form):
     choices = methods.other_works()
     name = MultiCheckboxField("Select", choices = choices, coerce=int)
+
+'''
+class SelectedForm(Form):
+    name = MultiTextField()
+'''
+'''
+class SelectedForm(Form):
+    name = TextField()
+    value = TextField()
+'''
+'''
+class SelectedForm(Form):
+    choices = methods.selected()
+    value = MultiTextField('value',choices = choices)
+'''
+
+
+class RegisterForm(Form):
+    username = TextField("User name", [validators.Required()])
+    password = PasswordField("Password", [validators.Required()])
+
+
+class LoginForm(Form):
+    username = TextField("User name", [validators.Required()])
+    password = PasswordField("Password", [validators.Required()])

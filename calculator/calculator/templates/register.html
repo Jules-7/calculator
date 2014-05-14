@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{%block main %}
+	<div class="loginform">
+		<form action="/register" name="register" method="POST">
+			<h2 class="h2header">Fill in fields to register</h2>
+			<div class="fields">User name:{{form.username()}}</div><br>
+			<div class="fields">Password:{{form.password()}}</div><br>
+			<div class="fields"><input type="submit" value="Register"></div>
+		</form>
+
+	{% if login == True %}
+		<a href="/login" class="logoutlogin">Login</a>
+	{% endif %}
+	
+		<h2 class="h2library">Back to <a href="/home" class="library">home</h2>
+	</div>
+{% endblock main %}
+
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		<div class="flash">
+			{% for message in messages %}
+				<p class="flashmessage">{{ message }}</p>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endwith %}

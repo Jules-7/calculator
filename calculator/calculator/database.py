@@ -2,9 +2,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String
 from sqlalchemy import Boolean
-from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash
 from sqlalchemy import exc
 
@@ -17,13 +16,41 @@ db_session = scoped_session(sessionmaker(autocommit=False,
 Base = declarative_base()
 Base.query = db_session.query_property()
 
-class Demount(Base):
-    __tablename__ = 'DEMOUNT'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+
+class Work(Base):
+
+    __tablename__ = 'WORK'
+    id = Column(Integer, primary_key = True)
     name = Column(String)
+    work = Column(String)
     price = Column(Integer)
     dimension = Column(String)
     
+
+class User(Base):
+    
+    def __init__(self, username, password, is_admin):
+        self.username = username
+        self.password = self.set_password(password)
+        self.is_admin = is_admin
+
+    __tablename__ = 'USERS'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    username = Column(String, unique=True)
+    password = Column(String)
+    is_admin = Column(Boolean)
+
+    def set_password(self, password):
+        return generate_password_hash(password)
+
+try:
+    Base.metadata.create_all(engine)
+except exc.OperationalError as e:
+    print('e')
+
+
+
+'''
 class Floor(Base):
     __tablename__ = 'FLOOR'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -79,8 +106,4 @@ class Other(Base):
     name = Column(String)
     price = Column(Integer)
     dimension = Column(String)
-
-try:
-    Base.metadata.create_all(engine)
-except exc.OperationalError as e:
-    print('e')
+'''

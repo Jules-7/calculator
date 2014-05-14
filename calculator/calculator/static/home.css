@@ -1,0 +1,79 @@
+body{
+	background-image:url('background.jpg');
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	}
+	
+#demount_panel,#demount,#floor_panel,#floor,#wall_panel,#wall,#doorway_panel,#doorway,#ceiling_panel,#ceiling,
+#tile_panel,#tile,#electric_panel,#electric,#sanitary_panel,#sanitary,#other_panel,#other{
+	padding:5px;
+	text-align:center;
+	width:400px;
+	background-color:#F5D5D1;
+	border:solid 1px #4B1818;
+	}
+	
+#demount_panel,#floor_panel,#wall_panel,#doorway_panel,#ceiling_panel,#tile_panel,#electric_panel,#sanitary_panel,#other_panel{
+	display:none;
+	}
+
+#chosen{
+	width:600px;
+	position:absolute;
+	left:50%;
+	top:75px;
+	background-color:#F1B4AE;
+	overflow:hidden;
+	border:solid 2px #860202;
+	padding:5px;
+	}
+	
+.user{
+	width:100px;
+	height:30px;
+	font-family:"Arial Black", Gadget, sans-serif;
+	font-size:25px;
+	position:fixed;
+	top:35px;
+	right:30px;
+	color:#471306;
+	}
+
+.logoutlogin{
+	color:#FFFFFF;
+	background-color:#471306;
+	height:25px;
+	position:fixed;
+	top:35px;
+	right:160px;
+	padding:3px;
+	font-family:"Arial Black", Gadget, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+	text-decoration:none;
+	}
+
+.register{
+	color:#FFFFFF;
+	background-color:#471306;
+	height:25px;
+	position:fixed;
+	top:35px;
+	right:50px;
+	padding:3px;
+	font-family:"Arial Black", Gadget, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+	text-decoration:none;
+	}
+	
+.loginform{
+	top:200px;
+	width:800px;
+	margin-left:auto;
+	margin-right:auto;
+	border-collapse:collapse;
+	text-align:center;
+	}

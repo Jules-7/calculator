@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
-	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/home.css">
 	<script> 
 	$(document).ready(function(){
   		$("#demount").click(function(){
@@ -45,28 +45,54 @@
   		});
 	});
 	$(document).ready(function(){
-  		$("#other").click(function(){
-    		$("#other_panel").slideToggle("slow");
-  		});
+		$("#other").click(function(){
+			$("#other_panel").slideToggle("slow");
+		});
+	});
+	
+	$(document).ready(function(){
+		$('#calculate').bind('click', function() {
+			var dict = {}
+			var ids = []
+			var datas = []
+			$(".result").each(function() {
+				if (this.value == ""){
+					alert("Fill all fields!");
+				return false;
+				}
+				
+				if ($.isNumeric(this.value)) {
+					ids.push(this.id);
+					datas.push(this.value);
+				} else {
+					alert("Insert only numbers");
+					return false;
+				}
+				
+				for (var i = 0; i < ids.length; i++){
+					dict[ids[i]] = datas[i];
+				}
+				
+			});
+			
+			$.getJSON('/add_numbers', dict, function(data) {
+				$("#result").text(data.result);
+			});
+			return false;
+			
+		});
 	});
 	</script>
-	<style> 
-	#demount_panel,#demount,#floor_panel,#floor,#wall_panel,#wall,#doorway_panel,#doorway,#ceiling_panel,#ceiling,
-	#tile_panel,#tile,#electric_panel,#electric,#sanitary_panel,#sanitary,#other_panel,#other
-	{
-	padding:5px;
-	text-align:center;
-	width:400px;
-	background-color:#e5eecc;
-	border:solid 1px #c3c3c3;
-	}
-	#demount_panel,#floor_panel,#wall_panel,#doorway_panel,#ceiling_panel,#tile_panel,#electric_panel,#sanitary_panel,#other_panel
-	{
-	display:none;
-	}
-	</style>
 	</head>
 	<body>
+	
+	{% block main %}
+	
+	{% if session.username %}
+		<div class="user">({{session.username}})</div>
+	{% endif %}
+	
+	
 	<div id="demount">Демонтаж</div>
 	<div id="demount_panel">
 		<form name="demount" action="{{ url_for('select_work', url='Demount') }}" method="post">
@@ -74,34 +100,7 @@
 			<p><input type="submit" value="Choose"></p>
 		</form>
 	</div>
-	<div id="floor">Пол</div>
-	<div id="floor_panel">
-		<form name="floor" action="{{ url_for('select_work', url='Floor') }}" method="post">
-			<p>{{ floor.name }}</p>
-			<p><input type="submit" value="Choose"></p>
-		</form>
-	</div>
-	<div id="wall">Стены</div>
-	<div id="wall_panel">
-		<form name="wall" action="{{ url_for('select_work', url='Wall') }}" method="post">
-			<p>{{ wall.name }}</p>
-			<p><input type="submit" value="Choose"></p>
-		</form>
-	</div>
-	<div id="doorway">Проем</div>
-	<div id="doorway_panel">
-		<form name="doorway" action="{{ url_for('select_work', url='Doorway') }}" method="post">
-			<p>{{ doorway.name }}</p>
-			<p><input type="submit" value="Choose"></p>
-		</form>
-	</div>
-	<div id="ceiling">Потолок</div>
-	<div id="ceiling_panel">
-		<form name="ceiling" action="{{ url_for('select_work', url='Ceiling') }}" method="post">
-			<p>{{ ceiling.name }}</p>
-			<p><input type="submit" value="Choose"></p>
-		</form>
-	</div>
+	
 	<div id="tile">Плитка</div>
 	<div id="tile_panel">
 		<form name="tile" action="{{ url_for('select_work', url='Tile') }}" method="post">
@@ -109,6 +108,39 @@
 			<p><input type="submit" value="Choose"></p>
 		</form>
 	</div>
+	
+	<div id="floor">Пол</div>
+	<div id="floor_panel">
+		<form name="floor" action="{{ url_for('select_work', url='Floor') }}" method="post">
+			<p>{{ floor.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	
+	<div id="wall">Стены</div>
+	<div id="wall_panel">
+		<form name="wall" action="{{ url_for('select_work', url='Wall') }}" method="post">
+			<p>{{ wall.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	
+	<div id="doorway">Проем</div>
+	<div id="doorway_panel">
+		<form name="doorway" action="{{ url_for('select_work', url='Doorway') }}" method="post">
+			<p>{{ doorway.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	
+	<div id="ceiling">Потолок</div>
+	<div id="ceiling_panel">
+		<form name="ceiling" action="{{ url_for('select_work', url='Ceiling') }}" method="post">
+			<p>{{ ceiling.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	
 	<div id="electric">Электрика</div>
 	<div id="electric_panel">
 		<form name="electric" action="{{ url_for('select_work', url='Electric') }}" method="post">
@@ -116,6 +148,7 @@
 			<p><input type="submit" value="Choose"></p>
 		</form>
 	</div>
+	
 	<div id="sanitary">Сантехника</div>
 	<div id="sanitary_panel">
 		<form name="sanitary" action="{{ url_for('select_work', url='Sanitary') }}" method="post">
@@ -123,6 +156,7 @@
 			<p><input type="submit" value="Choose"></p>
 		</form>
 	</div>
+	
 	<div id="other">Разное</div>
 		<div id="other_panel">
 		<form name="other" action="{{ url_for('select_work', url='Other') }}" method="post">
@@ -131,9 +165,32 @@
 		</form>
 	</div>
 	
-	{% if selected_data %}
-		{{selected_data}}
+	{% if selected %}
+		<div id="chosen">
+			<form>
+				{% for key, value in selected.iteritems() %}
+					<p>{{key}}</p>
+						{% for record in value %}
+							{{record[0]}}<input type="text" id="{{record[1]}}" size="5" class="result">{{record[2]}}<br>
+						{% endfor %}
+				{% endfor %}
+				<input type="button" id="calculate" value="Submit">
+			</form>
+		</div>
 	{% endif %}
+	
+	<p>Result is <span id=result>?</span></p>
+	
+	<a href="/clear">Clear</a>
+	
+	{% if not session.permission %}
+		<a href="/login" class="logoutlogin">Login</a><br>
+		<a href="/register">Register</a><br>
+	{% elif session.permission %}
+		<a href="/logout" class="logoutlogin">Logout</a><br>
+	{% endif %}
+	
+	{% endblock main%}
 	
 	{% with messages = get_flashed_messages() %}
 		{% if messages %}
@@ -141,6 +198,7 @@
 				{% for message in messages %}
 					<p class="flashmessage">{{ message }}</p>
 				{% endfor %}
+				
 			</div>
 		{% endif %}
 	{% endwith %}
