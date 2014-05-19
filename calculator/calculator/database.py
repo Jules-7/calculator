@@ -43,6 +43,16 @@ class User(Base):
     def set_password(self, password):
         return generate_password_hash(password)
 
+
+class DollarRate(Base):
+    
+    def __init__(self, rate):
+        self.rate = rate
+    
+    __tablename__ = 'RATE'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    rate = Column(Integer)
+
 try:
     Base.metadata.create_all(engine)
 except exc.OperationalError as e:

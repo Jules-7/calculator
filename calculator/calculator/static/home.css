@@ -4,28 +4,38 @@ body{
 	background-repeat:no-repeat;
 	}
 	
-#demount_panel,#demount,#floor_panel,#floor,#wall_panel,#wall,#doorway_panel,#doorway,#ceiling_panel,#ceiling,
-#tile_panel,#tile,#electric_panel,#electric,#sanitary_panel,#sanitary,#other_panel,#other{
+#demount,#floor,#wall,#doorway,#ceiling,#tile,#electric,#sanitary,#other{
 	padding:5px;
 	text-align:center;
-	width:400px;
-	background-color:#F5D5D1;
+	width:450px;
+	background-color:#E798D8;
 	border:solid 1px #4B1818;
+	font-weight:bold;
+	font-size:23px;
+
 	}
 	
 #demount_panel,#floor_panel,#wall_panel,#doorway_panel,#ceiling_panel,#tile_panel,#electric_panel,#sanitary_panel,#other_panel{
 	display:none;
+	width:450px;
+	font-size:20px;
+	text-decoration:underline;
+	text-align:left;
+	background-color:#A8DAF6;
 	}
 
 #chosen{
-	width:600px;
+	background-image:url('14.jpg');
+	background-repeat:repeat;
+
 	position:absolute;
-	left:50%;
-	top:75px;
-	background-color:#F1B4AE;
+	left:45%;
+	top:150px;
 	overflow:hidden;
-	border:solid 2px #860202;
 	padding:5px;
+	margin-left:15px;
+	border:solid black;
+
 	}
 	
 .user{
@@ -34,7 +44,7 @@ body{
 	font-family:"Arial Black", Gadget, sans-serif;
 	font-size:25px;
 	position:fixed;
-	top:35px;
+	top:65px;
 	right:30px;
 	color:#471306;
 	}
@@ -42,9 +52,9 @@ body{
 .logoutlogin{
 	color:#FFFFFF;
 	background-color:#471306;
+	position:absolute;
 	height:25px;
-	position:fixed;
-	top:35px;
+	top:65px;
 	right:160px;
 	padding:3px;
 	font-family:"Arial Black", Gadget, sans-serif;
@@ -57,9 +67,9 @@ body{
 .register{
 	color:#FFFFFF;
 	background-color:#471306;
+	position:absolute;
 	height:25px;
-	position:fixed;
-	top:35px;
+	top:65px;
 	right:50px;
 	padding:3px;
 	font-family:"Arial Black", Gadget, sans-serif;
@@ -76,4 +86,55 @@ body{
 	margin-right:auto;
 	border-collapse:collapse;
 	text-align:center;
+	}
+
+#menu{
+	top:150px;
+	position:absolute;
+	left:5%;
+	}
+
+.header{
+	font-weight: bold;
+	font-family: Cambria, Georgia, serif;
+	font-size:23px;
+	text-align:center;
+	}
+
+#welcome{
+	text-align:center;
+	}
+
+.add{
+	position:fixed;
+	top:130px;
+	right:20px;
+	}
+
+.database{
+	color:#FFFFFF;
+	background-color:#471306;
+	height:25px;
+	position:fixed;
+	top:65px;
+	right:260px;
+	padding:3px;
+	font-family:"Arial Black", Gadget, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+	text-decoration:none;
+	}
+
+.database_table{
+	background-color:white;
+	border:solid 1px black;
+	border-collapse:collapse;
+	opacity:0.85;
+	}
+
+#current_rate{
+	position:absolute;
+	top:130px;
+	right:350px;
 	}

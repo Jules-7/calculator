@@ -1,5 +1,5 @@
 #-*-coding: utf-8-*-
-from database import db_session, Work, User
+from database import db_session, Work, User, DollarRate
 from werkzeug.security import check_password_hash
 from flask import session
 
@@ -74,8 +74,9 @@ def calc(ids, amount):
     prices = [each[0] for each in prices] 
     i = 0
     result = 0
+    current_rate = get_current_rate()
     while i < len(ids):
-        result += prices[i]*amount[i]
+        result += prices[i]*amount[i]*current_rate
         i += 1
     return result
 
@@ -115,6 +116,48 @@ def check_if_admin(username, password):
         session["permission"] = "denied"
 
 
+def get_db():
+    database = {}
+    ids = get_all_ids()
+    for each in ids:
+        data = db_session.query(Work.work, Work.id, Work.name, Work.price, Work.dimension).filter(Work.id==each).all()
+        data = data[0]
+        data = [dat for dat in data]
+        if data[0] in database:
+            database[data[0]].append([data[1], data[2], data[3], data[4]])
+        else:
+            database[data[0]] = [[data[1], data[2], data[3], data[4]]]
+    return database
 
+
+def del_record(id):
+    Work.query.filter(Work.id == id).delete(synchronize_session='fetch')
+    db_session.commit()
+
+
+def add_record(name, work, price, dimension):
+    rec = Work(name = name, work = work, price = price, dimension = dimension)
+    db_session.add(rec)
+    db_session.commit()
+
+
+def edit(id, name, price, dimension):
+    db_session.query(Work).filter_by(id = id).update({"name":name, "price":price, "dimension":dimension}, synchronize_session='fetch') 
+    db_session.commit()
 
 #demount_works()
+
+
+def get_current_rate():
+    all_rates = db_session.query(DollarRate.id).distinct().all()
+    all_rates = [each[0] for each in all_rates]
+    current_id = all_rates[-1]
+    current_rate = db_session.query(DollarRate.rate).filter(DollarRate.id == current_id).first()
+    current_rate = current_rate[0]
+    return current_rate
+
+
+def new_rate(rate):
+    r = DollarRate(rate = rate)
+    db_session.add(r)
+    db_session.commit()

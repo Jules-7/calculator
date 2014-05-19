@@ -1,4 +1,4 @@
-from wtforms import Form, BooleanField, TextField, validators
+from wtforms import Form, TextField, validators, IntegerField
 from wtforms import SelectMultipleField, widgets, PasswordField
 import methods
 
@@ -62,6 +62,19 @@ class SelectedForm(Form):
     value = MultiTextField('value',choices = choices)
 '''
 
+class AddRecordForm(Form):
+    name = TextField("Name", [validators.Length(min=2, max=25)])
+    work = TextField("Work type", [validators.Length(min=2, max=25)])
+    price = TextField("Price", [validators.Length(min=2, max=25)])
+    dimension = TextField("Dimension", [validators.Length(min=2, max=25)])
+
+
+class EditForm(Form):
+    id = TextField()
+    name = TextField("name", [validators.Required()])
+    price = TextField("price", [validators.Required()])
+    dimension = TextField("dimension", [validators.Required()])
+
 
 class RegisterForm(Form):
     username = TextField("User name", [validators.Required()])
@@ -71,3 +84,6 @@ class RegisterForm(Form):
 class LoginForm(Form):
     username = TextField("User name", [validators.Required()])
     password = PasswordField("Password", [validators.Required()])
+
+class RateForm(Form):
+    rate = TextField("rate", [validators.Required()])

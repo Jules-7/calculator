@@ -1,0 +1,108 @@
+{% extends "home.html" %}
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/home.css">
+</head>
+<body>
+{% block main %}
+
+{% if session.permission == "authenticated" %}
+
+<div id="current_rate">
+	<p>Текущий курс</p>
+	<p>1$ = {{current_rate}}UAH</p>
+	<form name="rate_form" action="/change_rate" method="post">
+		<p>Change current rate</p>
+		{{rate_form.rate(size=10)}}<br>
+		<input type="submit" name="btn" value="rate">
+	</form>
+</div>
+
+{% if edit %}
+	<form name="e_form" action="{{ url_for('edit_record',id=e_form.id) }}" method="post">
+		<table class="database_table">
+			<tr class="database_table">
+				<td class="database_table">Name</td>
+				<td class="database_table">Price</td>
+				<td class="database_table">Dimension</td>
+			</tr>
+			
+			{% for key, value in database.iteritems() %}
+			
+			<tr>
+				<th>{{key}}</th>
+			</tr>
+			
+				{% for record in value %}
+					{% if e_form.id == record[0]  %}
+						<tr>
+							<td class="database_table">{{e_form.name(value=record[1])}}</td>
+							<td class="database_table">{{e_form.price(size=5, value=record[2])}}</td>
+							<td class="database_table">{{e_form.dimension(size=5, value=record[3])}}</td>
+							<td><input type="submit" name="btn" value="edit"></td>
+						</tr>
+					{% else %}
+						<tr>
+							<td class="database_table">{{record[1]}}</td>
+							<td class="database_table">{{record[2]}}</td>
+							<td class="database_table">{{record[3]}}</td>
+							<td><a href="{{ url_for('delete_record', url=record[0]) }}" id="delete">delete</a></td><td><a href="{{ url_for('edit', id=record[0]) }}" id="edit">edit</a></td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+	</form>
+{% else %}
+	<table class="database_table">
+		<tr class="database_table">
+			<td class="database_table">Name</td>
+			<td class="database_table">Price</td>
+			<td class="database_table">Dimension</td>
+		</tr>
+			{% for key, value in database.iteritems() %}
+			<tr>
+				<th>{{key}}</th>
+			</tr>
+				{% for record in value %}
+					<tr>
+						<td class="database_table">{{record[1]}}</td>
+						<td class="database_table">{{record[2]}}</td>
+						<td class="database_table">{{record[3]}}</td>
+						<td><a href="{{ url_for('delete_record', url=record[0]) }}" id="delete">delete</a></td><td><a href="{{ url_for('edit', id=record[0])}}" id="edit">edit</a></td>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		</table>
+{% endif %}
+
+	<div class="add">
+		<form name="add_form" action="/add_record" method="post">
+			<p>Добавить новую запись</p>
+			Название:{{add_form.name}}<br>
+			Тип работы:{{add_form.work}}<br>
+			Стоимость:{{add_form.price}}<br>
+			Ед измерения:{{add_form.dimension}}<br>
+			<input type="submit" name="btn" value="add">
+			<h2 class="h2library">Back to <a href="/home" class="library">home</h2>
+		
+		</form>
+	</div>
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="flash">
+				{% for message in messages %}
+					<p class="flashmessage">{{ message }}</p>
+				{% endfor %}
+				
+			</div>
+		{% endif %}
+	{% endwith %}
+
+{% else %}
+
+	<h1>You have no permission to look through this page</h1>
+
+{% endif %}
+{% endblock main %}
+</body>
