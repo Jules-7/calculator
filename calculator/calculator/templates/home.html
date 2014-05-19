@@ -113,16 +113,21 @@
 	</head>
 	<body>
 	
+	<div id="welcome">
+		<h1>Добро пожаловать</h1>
+	</div>
+	
+	
 	{% block main %}
 	
-	<h1 id="welcome">Добро пожаловать</h1>
+	
 	
 	{% if session.username %}
 		<div class="user">({{session.username}})</div>
 	{% endif %}
 	
 	<div id="menu">
-	<div id="demount">ДЕМОНТАЖ</div>
+	<div id="demount">ДЕМОНТАЖ ▾ </div>
 	<div id="demount_panel">
 		<form name="demount" action="{{ url_for('select_work', url='Demount') }}" method="post">
 			<p>{{ demount.name }}</p>
@@ -130,15 +135,7 @@
 		</form>
 	</div>
 	
-	<div id="tile">ПЛИТКА</div>
-	<div id="tile_panel">
-		<form name="tile" action="{{ url_for('select_work', url='Tile') }}" method="post">
-			<p>{{ tile.name }}</p>
-			<p><input type="submit" value="Choose"></p>
-		</form>
-	</div>
-	
-	<div id="floor">ПОЛ</div>
+	<div id="floor">ПОЛ ▾ </div>
 	<div id="floor_panel">
 		<form name="floor" action="{{ url_for('select_work', url='Floor') }}" method="post">
 			<p>{{ floor.name }}</p>
@@ -146,7 +143,7 @@
 		</form>
 	</div>
 	
-	<div id="wall">СТЕНЫ</div>
+	<div id="wall">СТЕНЫ ▾ </div>
 	<div id="wall_panel">
 		<form name="wall" action="{{ url_for('select_work', url='Wall') }}" method="post">
 			<p>{{ wall.name }}</p>
@@ -154,7 +151,7 @@
 		</form>
 	</div>
 	
-	<div id="doorway">ПРОЕМ</div>
+	<div id="doorway">ПРОЕМ ▾ </div>
 	<div id="doorway_panel">
 		<form name="doorway" action="{{ url_for('select_work', url='Doorway') }}" method="post">
 			<p>{{ doorway.name }}</p>
@@ -162,7 +159,7 @@
 		</form>
 	</div>
 	
-	<div id="ceiling">ПОТОЛОК</div>
+	<div id="ceiling">ПОТОЛОК ▾ </div>
 	<div id="ceiling_panel">
 		<form name="ceiling" action="{{ url_for('select_work', url='Ceiling') }}" method="post">
 			<p>{{ ceiling.name }}</p>
@@ -170,7 +167,15 @@
 		</form>
 	</div>
 	
-	<div id="electric">ЭЛЕКТРИКА</div>
+	<div id="tile">ПЛИТКА ▾ </div>
+	<div id="tile_panel">
+		<form name="tile" action="{{ url_for('select_work', url='Tile') }}" method="post">
+			<p>{{ tile.name }}</p>
+			<p><input type="submit" value="Choose"></p>
+		</form>
+	</div>
+	
+	<div id="electric">ЭЛЕКТРИКА ▾ </div>
 	<div id="electric_panel">
 		<form name="electric" action="{{ url_for('select_work', url='Electric') }}" method="post">
 			<p>{{ electric.name }}</p>
@@ -178,7 +183,7 @@
 		</form>
 	</div>
 	
-	<div id="sanitary">САНТЕХНИКА</div>
+	<div id="sanitary">САНТЕХНИКА ▾ </div>
 	<div id="sanitary_panel">
 		<form name="sanitary" action="{{ url_for('select_work', url='Sanitary') }}" method="post">
 			<p>{{ sanitary.name }}</p>
@@ -186,7 +191,7 @@
 		</form>
 	</div>
 	
-	<div id="other">РАЗНОЕ</div>
+	<div id="other">РАЗНОЕ ▾ </div>
 		<div id="other_panel">
 		<form name="other" action="{{ url_for('select_work', url='Other') }}" method="post">
 			<p>{{ other.name }}</p>
@@ -203,7 +208,7 @@
 					<tr class="header"><td>{{key}}</td></tr>
 						{% for record in value %}
 						<tr>
-							<td>{{record[0]}}</td><td><input type="text" id="{{record[1]}}" size="5" class="result"></td><td>{{record[2]}}</td><td><a href="{{ url_for('delete', url=record[1]) }}" id="delete" >delete</a></td>
+							<td>{{record[0]}}</td><td><input type="text" id="{{record[1]}}" size="5" class="result"></td><td>{{record[2]}}</td><td><a href="{{ url_for('delete', url=record[1]) }}" id="delete" ></a></td>
 						</tr>
 						{% endfor %}
 				{% endfor %}
@@ -218,7 +223,7 @@
 	{% endif %}
 	
 	{% if session.permission == "authenticated" %}
-		<a href="/database" class="database">Просмотреть прайс</a>
+		<a href="/database" class="price">Прайс</a>
 	{% endif %}
 	
 	{% endblock main %}

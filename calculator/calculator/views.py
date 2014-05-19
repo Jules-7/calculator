@@ -210,8 +210,9 @@ def edit(id):
     add_form = AddRecordForm(request.form)
     rate_form = RateForm(request.form)
     database = methods.get_db()
+    current_rate = methods.get_current_rate()
     return render_template('database.html', e_form=e_form, edit = edit, database = database, add_form = add_form,
-                            rate_form = rate_form)
+                            rate_form = rate_form, current_rate = current_rate)
 
 
 @app.route('/edit_name/<int:id>', methods=['GET', 'POST'])

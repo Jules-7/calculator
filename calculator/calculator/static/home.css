@@ -1,19 +1,65 @@
 body{
-	background-image:url('background.jpg');
-	background-attachment:fixed;
+	background-color:#FDFD90;
+	background-image:url('back.jpg');
 	background-repeat:no-repeat;
 	}
-	
+
+
+#welcome{
+	position:absolute;
+	top:30px;
+	left:35%;
+	font-size:25px;
+	color:#F8EA42;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	}
+
 #demount,#floor,#wall,#doorway,#ceiling,#tile,#electric,#sanitary,#other{
 	padding:5px;
 	text-align:center;
 	width:450px;
-	background-color:#E798D8;
+	
 	border:solid 1px #4B1818;
 	font-weight:bold;
 	font-size:23px;
-
 	}
+	
+#demount{
+	background-color:#FD3826;
+	}
+	
+#floor{
+	background-color:#F47D0D;
+	}
+
+#wall{
+	background-color:#F5EB09;
+	}
+
+#doorway{
+	background-color:#70F508;
+	}
+
+#ceiling{
+	background-color:#05F7B3;
+	}
+
+#tile{
+	background-color:#17AFF7;
+	}
+
+#electric{
+	background-color:#3F37F3;
+	}
+
+#sanitary{
+	background-color:#B31CFA;
+	}
+
+#other{
+	background-color:#FA16E8;
+	}
+	
 	
 #demount_panel,#floor_panel,#wall_panel,#doorway_panel,#ceiling_panel,#tile_panel,#electric_panel,#sanitary_panel,#other_panel{
 	display:none;
@@ -21,16 +67,50 @@ body{
 	font-size:20px;
 	text-decoration:underline;
 	text-align:left;
-	background-color:#A8DAF6;
+	}
+
+#demount_panel{
+	background-color:#F78177;
+	}
+	
+#floor_panel{
+	background-color:#FAC06A;
+	}
+
+#wall_panel{
+	background-color:#F6F27A;
+	}
+
+#doorway_panel{
+	background-color:#AEF874;
+	}
+
+#ceiling_panel{
+	background-color:#93FCDE;
+	}
+
+#tile_panel{
+	background-color:#84D5FC;
+	}
+
+#electric_panel{
+	background-color:#9B97FC;
+	}
+
+#sanitary_panel{
+	background-color:#D890FA;
+	}
+
+#other_panel{
+	background-color:#F696EF;
 	}
 
 #chosen{
 	background-image:url('14.jpg');
 	background-repeat:repeat;
-
 	position:absolute;
 	left:45%;
-	top:150px;
+	top:250px;
 	overflow:hidden;
 	padding:5px;
 	margin-left:15px;
@@ -42,33 +122,36 @@ body{
 	height:30px;
 	font-family:"Arial Black", Gadget, sans-serif;
 	font-size:25px;
-	position:fixed;
-	top:65px;
+	position:absolute;
+	top:45px;
 	right:30px;
-	color:#471306;
+	color:#F8EA42;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	}
 
 .logoutlogin{
-	color:#FFFFFF;
-	background-color:#471306;
+	color:#D3D5F6;
+	background-color:#F8EA42;
 	position:absolute;
 	height:25px;
-	top:65px;
+	top:45px;
 	right:160px;
 	padding:3px;
+	border:1px black;
 	font-family:"Arial Black", Gadget, sans-serif;
 	font-size:20px;
 	font-weight:bold;
 	text-align:center;
 	text-decoration:none;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	}
 
 .register{
-	color:#FFFFFF;
-	background-color:#471306;
+	color:#D3D5F6;
+	background-color:#F8EA42;
 	position:absolute;
 	height:25px;
-	top:65px;
+	top:45px;
 	right:50px;
 	padding:3px;
 	font-family:"Arial Black", Gadget, sans-serif;
@@ -76,6 +159,7 @@ body{
 	font-weight:bold;
 	text-align:center;
 	text-decoration:none;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	}
 	
 .loginform{
@@ -88,9 +172,9 @@ body{
 	}
 
 #menu{
-	top:150px;
+	top:250px;
 	position:absolute;
-	left:5%;
+	left:3%;
 	}
 
 .header{
@@ -100,22 +184,18 @@ body{
 	text-align:center;
 	}
 
-#welcome{
-	text-align:center;
-	}
-
 .add{
 	position:fixed;
-	top:130px;
+	top:250px;
 	right:20px;
 	}
 
-.database{
-	color:#FFFFFF;
-	background-color:#471306;
+.price{
+	color:#D3D5F6;
+	background-color:#F8EA42;
 	height:25px;
-	position:fixed;
-	top:65px;
+	position:absolute;
+	top:45px;
 	right:260px;
 	padding:3px;
 	font-family:"Arial Black", Gadget, sans-serif;
@@ -123,6 +203,12 @@ body{
 	font-weight:bold;
 	text-align:center;
 	text-decoration:none;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	}
+
+.database_div{
+	position:absolute;
+	top:250px;
 	}
 
 .database_table{
@@ -133,7 +219,21 @@ body{
 	}
 
 #current_rate{
-	position:absolute;
-	top:130px;
+	position:fixed;
+	top:250px;
 	right:350px;
+	}
+
+#delete{
+	background-image:url("delete.jpg");
+	display: inline-block;
+	width:22px;
+	height:22px;
+	}
+	
+#edit{
+	background-image:url("edit.jpg");
+	display: inline-block;
+	width:22px;
+	height:22px;
 	}
