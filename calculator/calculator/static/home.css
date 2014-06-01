@@ -163,12 +163,20 @@ body{
 	}
 	
 .loginform{
+	position:fixed;
+	left:30%;
 	top:200px;
-	width:800px;
+	width:500px;
 	margin-left:auto;
 	margin-right:auto;
 	border-collapse:collapse;
 	text-align:center;
+	}
+
+.h2home{
+	position:fixed;
+	top:450px;
+	right:1%;
 	}
 
 #menu{

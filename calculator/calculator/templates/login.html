@@ -4,17 +4,17 @@
 {%block main %}
 	<div class="loginform">
 		<form action="/login" name="login" method="POST">
-			<h2 class="h2header">Fill in fields to login<h2>
-					<div class="fields"> User name:{{form.username()}}</div><br>
-					<div class="fields">Password:{{form.password()}}</div><br>
-					<div class="fields"><input type="submit" value="Login"></div>
+			<h2 class="h2header">Заполните все поля чтоб войти<h2>
+					<div class="fields"> Имя пользователя:{{form.username()}}</div><br>
+					<div class="fields">Пароль:{{form.password()}}</div><br>
+					<div class="fields"><input type="submit" value="Войти"></div>
 		</form>
 
 		{% if register == False %}
 			<a href="/register" class="register">Register</a>
 		{% endif %}
 	</div>
-		<h2 class="h2library">Back to <a href="/home" class="library">home</h2>
+		<h2 class="h2home">Вернуться на <a href="/home" class="home">главную страницу</h2>
 {% endblock main %}
 
 {% with messages = get_flashed_messages() %}

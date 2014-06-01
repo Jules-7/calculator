@@ -12,9 +12,9 @@
 	<p>Текущий курс</p>
 	<p>1$ = {{current_rate}}UAH</p>
 	<form name="rate_form" action="/change_rate" method="post">
-		<p>Change current rate</p>
+		<p>Изменить курс</p>
 		{{rate_form.rate(size=10)}}<br>
-		<input type="submit" name="btn" value="rate">
+		<input type="submit" name="btn" value="Изменить">
 	</form>
 </div>
 <div class="database_div">
@@ -23,9 +23,9 @@
 	<form name="e_form" action="{{ url_for('edit_record',id=e_form.id) }}" method="post">
 		<table class="database_table">
 			<tr class="database_table">
-				<td class="database_table">Name</td>
-				<td class="database_table">Price</td>
-				<td class="database_table">Dimension</td>
+				<td class="database_table">Наименование</td>
+				<td class="database_table">Стоимость(у.е.)</td>
+				<td class="database_table">Размерность</td>
 			</tr>
 			
 			{% for key, value in database.iteritems() %}
@@ -56,9 +56,9 @@
 {% else %}
 	<table class="database_table">
 		<tr class="database_table">
-			<td class="database_table">Name</td>
-			<td class="database_table">Price</td>
-			<td class="database_table">Dimension</td>
+			<td class="database_table">Наименование</td>
+			<td class="database_table">Стоимость(у.е.)</td>
+			<td class="database_table">Размерность</td>
 		</tr>
 			{% for key, value in database.iteritems() %}
 			<tr>
@@ -84,8 +84,8 @@
 			Тип работы:{{add_form.work}}<br>
 			Стоимость:{{add_form.price}}<br>
 			Ед измерения:{{add_form.dimension}}<br>
-			<input type="submit" name="btn" value="add">
-			<h2 class="h2library">Back to <a href="/home" class="library">home</h2>
+			<input type="submit" name="btn" value="Добавить">
+			<h2 class="h2home">Вернуться на <a href="/home" class="home">главную страницу</h2>
 		
 		</form>
 	</div>

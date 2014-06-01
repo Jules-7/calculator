@@ -1,3 +1,4 @@
+#-*-coding: utf-8-*-
 from flask import render_template, request, redirect, url_for, flash
 from flask import session, jsonify
 from datetime import timedelta
@@ -196,7 +197,7 @@ def delete_record(url):
 @app.route('/add_record', methods = ['GET', 'POST'])
 def add_record():
     add_form = AddRecordForm(request.form)
-    if request.method == 'POST' and request.form['btn'] == 'add':
+    if request.method == 'POST' and request.form['btn'] == u'Добавить':
         flash('got post')
         methods.add_record(add_form.name.data, add_form.work.data, add_form.price.data, add_form.dimension.data)
     return redirect(url_for('show_database'))
@@ -233,7 +234,7 @@ def edit_record(id):
 @app.route('/change_rate', methods = ['GET', 'POST'])
 def change_rate():
     rate_form = RateForm(request.form)
-    if request.form['btn'] == "rate":
+    if request.form['btn'] == u'Изменить':
         rate = rate_form.rate.data
         methods.new_rate(rate)
         return redirect(url_for('show_database'))
