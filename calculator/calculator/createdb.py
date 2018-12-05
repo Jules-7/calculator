@@ -2,13 +2,14 @@
 from database import db_session, Work
 
 def check_db():
+    
     check = db_session.query(Work.id).distinct().all()
-    if check:
-        pass
-    else:
-        import sqlite3
-        conn = sqlite3.connect('works.db')
+    
+    if not check:
         
+        import sqlite3
+        
+        conn = sqlite3.connect('works.db')
         c = conn.cursor()
         
         """ WORK """
