@@ -90,9 +90,6 @@ def db_test_admin():
     else:
         add_user('admin', '123', is_admin=True)
 
-""" create admin record in db"""
-db_test_admin()
-
 def check_if_admin(username, password):
     find_password = db_session.query(User.password).filter(User.username == username).first()
     if find_password:
