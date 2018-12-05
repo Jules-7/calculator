@@ -67,8 +67,6 @@ def get_selected(ids):
             #selected[each] = data
     return selected
 
-#print(get_selected([1,5,8]))
-
 def calc(ids, amount):
     prices = db_session.query(Work.price).filter(Work.id.in_((ids))).all()
     prices = [each[0] for each in prices] 
@@ -79,8 +77,6 @@ def calc(ids, amount):
         result += prices[i]*amount[i]*current_rate
         i += 1
     return result
-
-#print(calc([1,2,3,4,5,6], [3,3,3,3,3,3]))
 
 def add_user(username, password, is_admin = False):
     new_user = User(username, password, is_admin)
@@ -115,7 +111,6 @@ def check_if_admin(username, password):
     else:
         session["permission"] = "denied"
 
-
 def get_db():
     database = {}
     ids = get_all_ids()
@@ -129,24 +124,18 @@ def get_db():
             database[data[0]] = [[data[1], data[2], data[3], data[4]]]
     return database
 
-
 def del_record(id):
     Work.query.filter(Work.id == id).delete(synchronize_session='fetch')
     db_session.commit()
-
 
 def add_record(name, work, price, dimension):
     rec = Work(name = name, work = work, price = price, dimension = dimension)
     db_session.add(rec)
     db_session.commit()
 
-
 def edit(id, name, price, dimension):
     db_session.query(Work).filter_by(id = id).update({"name":name, "price":price, "dimension":dimension}, synchronize_session='fetch') 
     db_session.commit()
-
-#demount_works()
-
 
 def get_current_rate():
     all_rates = db_session.query(DollarRate.id).distinct().all()
@@ -155,7 +144,6 @@ def get_current_rate():
     current_rate = db_session.query(DollarRate.rate).filter(DollarRate.id == current_id).first()
     current_rate = current_rate[0]
     return current_rate
-
 
 def new_rate(rate):
     r = DollarRate(rate = rate)
