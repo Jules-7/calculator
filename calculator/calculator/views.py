@@ -35,17 +35,10 @@ def load_user(userid):
 
 
 def make_record(works):
-    #try:
-    #if session['data']:
-        #if not works:
-            #pass
-        #else:
     for work in works:
         try:
             present = session['data']
-            if work in present:
-                pass
-            else:
+            if work not in present:
                 session['data'].append(work)
         except:
             session['data'] = [0]
@@ -72,7 +65,6 @@ def show_work():
             chosen.append(each)
     except:
         session['data'] = [0]
-    #flash('%s'%session['data'])
     selected = methods.get_selected(chosen)
     return render_template('home.html', demount=demount, tile=tile, selected=selected,
                            floor=floor, wall=wall, doorway=doorway, ceiling=ceiling,
