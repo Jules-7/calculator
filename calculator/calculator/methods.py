@@ -85,9 +85,7 @@ def add_user(username, password, is_admin = False):
 
 def db_test_admin():
     admin_present = db_session.query(User).filter_by(username = 'admin').first()
-    if admin_present:
-        pass
-    else:
+    if not admin_present:
         add_user('admin', '123', is_admin=True)
 
 def check_if_admin(username, password):
